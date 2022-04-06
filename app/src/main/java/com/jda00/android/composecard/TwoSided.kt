@@ -12,21 +12,21 @@ enum class TWOSIDED {
 
 @Composable
 fun DoubleSide(
-    transX: Float = 0f,
-    transY: Float = 0f,
     rotX: Float = 0f,
     rotY: Float = 0f,
     rotZ: Float = 0f,
+    transX: Float = 0f,
+    transY: Float = 0f,
     camDist: Float = 8f,
     flipType: TWOSIDED,
     front: @Composable () -> Unit,
     back: @Composable () -> Unit
 ) {
-    fun isHorizontallyFlip() = (abs(rotX) % 360 > 90f && abs(rotX) % 360 < 270f)
-    fun isVerticallyFlip() = (abs(rotY) % 360 > 90f && abs(rotY) % 360 < 270f)
+    fun isHorizFlip() = (abs(rotX) % 360 > 90f && abs(rotX) % 360 < 270f)
+    fun isVertFlip() = (abs(rotY) % 360 > 90f && abs(rotY) % 360 < 270f)
 
 
-    fun isFlipped() = isVerticallyFlip() xor isHorizontallyFlip()
+    fun isFlipped() = isVertFlip() xor isHorizFlip()
 
     if (isFlipped()) {
         val rotXBack =
